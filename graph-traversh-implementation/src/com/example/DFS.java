@@ -23,8 +23,8 @@ public class DFS {
 		System.out.print(parent);
 
 		for (int i = 0; i < graph[parent].size(); i++) {
-			if (!visited[parent]) {
-				Edge edge = graph[parent].get(i);
+			Edge edge = graph[parent].get(i);
+			if (!visited[edge.dest]) {
 				dfs(graph, edge.dest, visited);
 			}
 		}
