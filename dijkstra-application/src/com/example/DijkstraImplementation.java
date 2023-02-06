@@ -3,8 +3,7 @@ package com.example;
 import java.util.ArrayList;
 import java.util.PriorityQueue;
 
-public class DijkstraTest {
-
+public class DijkstraImplementation {
 	static class Edge {
 		int src;
 		int dest;
@@ -47,33 +46,46 @@ public class DijkstraTest {
 	}
 
 	public static int[] dijkstra(ArrayList<Edge> graph[], int src) {
-		PriorityQueue<Pair> pq = new PriorityQueue<>();
-		int dist[] = new int[graph.length];
-		boolean vis[] = new boolean[graph.length];
-		for (int i = 0; i < dist.length; i++) {
+
+		int length = graph.length;
+		boolean[] visitead = new boolean[length];
+		Pair pair = new Pair(src, 0);
+		PriorityQueue<Pair> q = new PriorityQueue<DijkstraImplementation.Pair>();
+		q.add(pair);
+
+		int[] distance = new int[length];
+		for (int i = 0; i < distance.length; i++) {
 			if (i != src) {
-				dist[i] = Integer.MAX_VALUE;
+				distance[i] = Integer.MAX_VALUE;
 			}
 		}
 
-		pq.add(new Pair(src, 0));
-		while (!pq.isEmpty()) {
-			Pair curr = pq.remove();
-			if (!vis[curr.n]) {
-				vis[curr.n] = true;
-				for (int i = 0; i < graph[curr.n].size(); i++) {
-					Edge e = graph[curr.n].get(i);
-					int u = e.src;
-					int v = e.dest;
-					int waight = dist[u] + e.wt;
-					if (!vis[v] && waight < dist[v]) {
-						dist[v] = waight;
-						pq.add(new Pair(v, dist[v]));
+		while (!q.isEmpty()) {
+			Pair element = q.remove();
+
+			if (!visitead[element.n]) {
+				visitead[element.n] = true;
+				
+				ArrayList<Edge> adjencyList = graph[element.n];
+				
+				for (int i = 0; i < adjencyList.size(); i++) {
+					Edge edge = adjencyList.get(i);
+					int u = edge.src;
+					int v = edge.dest;
+
+					int wt = edge.wt;
+					int currentDistance = distance[u] + wt;
+					if (currentDistance < distance[v]) {
+						distance[v] = currentDistance;
+						Pair e = new Pair(v, distance[v]);
+						q.add(e);
 					}
 				}
 			}
+
 		}
-		return dist;
+
+		return distance;
 	}
 
 	public static void main(String[] args) {
