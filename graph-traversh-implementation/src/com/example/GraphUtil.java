@@ -84,14 +84,14 @@ public class GraphUtil {
 		
 		graph[0].add(new EdgeWithTime(0, 2, 1, "09:00", "09:15"));
 
-		graph[1].add(new EdgeWithTime(1, 2, 2,"08:50","09:17"));
+		graph[1].add(new EdgeWithTime(1, 2, 2,"08:45","09:12"));
 		graph[1].add(new EdgeWithTime(1, 2, 3,"08:50","09:17"));
 		
 		
 		
 
 		graph[2].add(new EdgeWithTime(2, 4, 1,"09:15","09:30"));
-		graph[2].add(new EdgeWithTime(2, 3, 2,"09:17","09:45"));
+		graph[2].add(new EdgeWithTime(2, 3, 2,"09:12","09:45"));
 		graph[2].add(new EdgeWithTime(2, 3, 3,"09:17","09:45"));
 
 		graph[3].add(new EdgeWithTime(3, 5, 2,"09:45","09:47"));
